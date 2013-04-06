@@ -25,8 +25,6 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
@@ -41,9 +39,10 @@ import com.tomting.orion.ThrfLkey;
 import com.tomting.orion.iEcolumntype;
 import com.tomting.orion.iEquerytype;
 import com.tomting.orion.iEstatetype;
-import com.tomting.thor.orion.connection.OrionConnection;
+import com.tomting.orion.connection.Helpers;
+import com.tomting.orion.connection.OrionConnection;
+import com.tomting.orion.connection.OrionConnectionFactory;
 import com.yahoo.ycsb.*;
-
 
 public class OrionClient extends DB {
 	
@@ -51,7 +50,7 @@ public class OrionClient extends DB {
 	
 	public static final int Ok = 0;
 	public static final int Error = -1;	
-	private static final Pattern URL = Pattern.compile("orion:([\\w|.]+):(\\d+):(\\w+)");	
+	private OrionConnectionFactory ocf = null;
 	private OrionConnection orionConnection = null;
 	
 	
@@ -60,28 +59,15 @@ public class OrionClient extends DB {
 	    if (hosts == null) {
 	      throw new DBException("Required property \"hosts\" missing for OrionClient");
 	    }	
-	    
-        Matcher hostMatcher = URL.matcher(hosts);
-		if (!hostMatcher.matches()) 
-			throw new UnsupportedOperationException("orion:host:port:namespace");
-		
-		String host = hostMatcher.group(1);
-        int port = Integer.parseInt (hostMatcher.group(2));
-        String namespace = hostMatcher.group(3);	
-        LOGGER.info(hosts);
-        try {
-			orionConnection = new OrionConnection (host, port, namespace);
-		} catch (Exception e) {
-			throw new DBException("Cant connect to Orion");
-		}	    	    
+	    LOGGER.info(hosts);
+	    ocf= Helpers.getOCF (hosts);
+	    orionConnection = ocf.checkOut();
+	    if (orionConnection == null) throw new DBException("Cant connect to Orion");   	    
 	}
 	
 	public void cleanup() throws DBException {
 		
-		try {
-			orionConnection.close();
-		} catch (TException e) {
-		}
+		ocf.checkIn(orionConnection);
 	}	
 
 	/**
@@ -146,8 +132,8 @@ public class OrionClient extends DB {
         	ThrfL2qb queryReturn = orionConnection.runQuery (query);
         	returnedKeyslices = queryReturn.bVreturn;
         	if (returnedKeyslices) {
-        		keyslice = queryReturn.cKeyslices.get(0);
-        		for (ThrfL2cl column : keyslice.cVcolumns) {
+        		keyslice = queryReturn.cKeyslices.get(0);        		
+        		for (ThrfL2cl column : keyslice.cVcolumns) {        			
         			result.put(column.sVcolumn, new StringByteIterator(column.cVvalue.sVvalue));
         		}
         	}

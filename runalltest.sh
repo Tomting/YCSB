@@ -77,6 +77,9 @@ echo "##########################################"
 echo "# MEMCACHED"
 echo "##########################################"
 
+service memcached start
+sleep 5
+
 export THREADS=1
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
@@ -85,6 +88,9 @@ export THREADS=100
 
 export THREADS=1000
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
+
+service memcached stop
+sleep 5
 
 echo "##########################################"
 echo "# ORION"

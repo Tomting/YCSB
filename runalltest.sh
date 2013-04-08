@@ -29,6 +29,9 @@ echo "##########################################"
 echo "# REDIS"
 echo "##########################################"
 
+service redis_6379 start
+sleep 10
+
 export THREADS=1
 ./runtest.sh redis -p redis.host=localhost
 
@@ -37,6 +40,9 @@ export THREADS=100
 
 export THREADS=1000
 ./runtest.sh redis -p redis.host=localhost
+
+service redis_6379 stop
+sleep 10
 
 echo "##########################################"
 echo "# MONGODB"

@@ -49,7 +49,7 @@ echo "# MONGODB"
 echo "##########################################"
 
 service mongodb start
-sleep 3
+sleep 10
 
 export THREADS=1
 ./runtest.sh mongodb
@@ -64,7 +64,7 @@ export THREADS=1000
 ./cleandb_mongodb.sh
 
 service mongodb stop
-sleep 3
+sleep 10
 
 echo "##########################################"
 echo "# HBASE"
@@ -84,7 +84,7 @@ echo "# MEMCACHED"
 echo "##########################################"
 
 service memcached start
-sleep 5
+sleep 10
 
 export THREADS=1
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
@@ -96,7 +96,7 @@ export THREADS=1000
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
 service memcached stop
-sleep 5
+sleep 10
 
 echo "##########################################"
 echo "# ORION"

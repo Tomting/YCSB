@@ -74,6 +74,19 @@ export THREADS=1000
 ./runtest.sh hbase
 
 echo "##########################################"
+echo "# MEMCACHED"
+echo "##########################################"
+
+export THREADS=1
+./runtest.sh memcached 
+
+export THREADS=100
+./runtest.sh memcached 
+
+export THREADS=1000
+./runtest.sh memcached 
+
+echo "##########################################"
 echo "# ORION"
 echo "##########################################"
 
@@ -90,7 +103,7 @@ export THREADS=1000
 # COLLECT
 ##########################################
 now=$(date +"%Y%m%d_%H_%M_%S")
-zip collect_$now.zip orion.* redis.* aerospike.* mongodb.* hbase.*
+zip collect_$now.zip orion.* redis.* aerospike.* mongodb.* hbase.* memcached.*
 mv collect_$now.zip /var/www/html/test
 
 #####################################à####
@@ -101,4 +114,5 @@ mv collect_$now.zip /var/www/html/test
 ./cleanup.sh mongodb
 ./cleanup.sh orion
 ./cleanup.sh hbase
+./cleanup.sh memcached
 

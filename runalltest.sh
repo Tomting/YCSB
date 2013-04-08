@@ -78,13 +78,13 @@ echo "# MEMCACHED"
 echo "##########################################"
 
 export THREADS=1
-./runtest.sh memcached 
+./runtest.sh memcached -p memcached.hosts=localhost
 
 export THREADS=100
-./runtest.sh memcached 
+./runtest.sh memcached -p memcached.hosts=localhost
 
 export THREADS=1000
-./runtest.sh memcached 
+./runtest.sh memcached -p memcached.hosts=localhost
 
 echo "##########################################"
 echo "# ORION"

@@ -61,36 +61,32 @@
 
   <modules>
     <!--module>build-tools</module-->
-
 	<module>core</module>
+	<module>orion</module>
+	<module>redis</module>
+	<module>mongodb</module>
+	<module>aerospike</module>
+	<module>hbase</module>
+	<module>memcached</module>
+
 <!--
     <module>cassandra</module>
--->
-
 	<module>hbase</module>
-<!--
     <module>hypertable</module>
     <module>dynamodb</module>
     <module>elasticsearch</module>
--->
-
 	<module>mongodb</module>
 	<module>orion</module>
 	<module>aerospike</module>
-
-    <!--<module>gemfire</module>-->
-<!--
+	<module>memcached</module>
+	<module>gemfire</module>
     <module>infinispan</module>
     <module>jdbc</module>
     <module>mapkeeper</module>
     <module>mongodb</module>
     <module>orientdb</module>
--->
-    <!--module>nosqldb</module-->
-
+    <module>nosqldb</module>
 	<module>redis</module>
-
-<!-- 
     <module>voldemort</module>
     <module>distribution</module>
 -->

@@ -103,13 +103,13 @@ echo "# ORION"
 echo "##########################################"
 
 export THREADS=1
-./runtest.sh orion -p hosts=orion:localhost:9001:DEFAULT
+./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
 export THREADS=100
-./runtest.sh orion -p hosts=orion:localhost:9001:DEFAULT
+./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
 export THREADS=1000
-./runtest.sh orion -p hosts=orion:localhost:9001:DEFAULT
+./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
 #####################################à####
 # COLLECT

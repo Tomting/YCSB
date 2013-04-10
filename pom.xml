@@ -68,7 +68,6 @@
 	<module>aerospike</module>
 	<module>hbase</module>
 	<module>memcached</module>
-	<module>couchbase-2.0</module>
 
 <!--
     <module>cassandra</module>

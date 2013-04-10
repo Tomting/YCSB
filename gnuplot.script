@@ -13,7 +13,7 @@ workload=system("echo $workload")
 values=system("echo $values")
 
 # Make some suitable labels.
-set title workload
+set title "YCSB - ".workload
 set xlabel "Threads"
 set ylabel "Operations Per Second"
  

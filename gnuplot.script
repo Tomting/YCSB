@@ -1,0 +1,44 @@
+clear
+reset
+set key off
+set border 3
+set auto
+ 
+#set xrange[0:120]
+#set xtics 5
+set auto x 
+ 
+bw = 0.9
+red = "#AA0000"; green = "#00AA00"; blue = "#0000AA"
+div=1.1; bw = 0.9; h=1.0; BW=0.9; wd=10; LIMIT=255-wd; white = 0
+ 
+# Make some suitable labels.
+set title "Workload"
+set xlabel "Threads"
+set ylabel "Operations Per Second"
+ 
+set terminal png enhanced font arial 14 size 800, 600
+ft="png"
+# Set the output-file name.
+set output "enes.".ft
+ 
+set label 1 'MongoDB' at graph 0.09, 0.85 left 
+set label 2 'Cassandra' at graph 0.09, 0.90 left 
+set label 3 'Redis' at graph 0.09, 0.95 left 
+ 
+#set style histogram clustered gap 1
+#set style fill solid border -1
+
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid
+set boxwidth bw
+set multiplot
+ 
+#binwidth=5
+#set boxwidth binwidth
+#bin(x,width)=width*floor(x/width) + binwidth/2.0
+ 
+#plot 'values.dat' using (bin($1,binwidth)):(1.0) smooth freq with boxes
+#plot 'values.dat' smooth freq with boxes
+plot 'values.dat' u 1 lc rgb red, '' u 2 lc rgb green, '' u 3 lc rgb blue

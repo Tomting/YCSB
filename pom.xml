@@ -62,12 +62,15 @@
   <modules>
     <!--module>build-tools</module-->
 	<module>core</module>
-	<module>orion</module>
+<!--	<module>orion</module>
 	<module>redis</module>
+-->
 	<module>mongodb</module>
+<!--
 	<module>aerospike</module>
 	<module>hbase</module>
 	<module>memcached</module>
+-->
 
 <!--
     <module>cassandra</module>

@@ -13,13 +13,13 @@ echo "##########################################"
 /etc/init.d/citrusleaf start
 sleep 10
 
-export THREADS=1
+export THREADS=10
 ./runtest.sh aerospike
 
 export THREADS=100
 ./runtest.sh aerospike
 
-export THREADS=1000
+export THREADS=500
 ./runtest.sh aerospike
 
 /etc/init.d/citrusleaf stop
@@ -32,13 +32,13 @@ echo "##########################################"
 service redis_6379 start
 sleep 10
 
-export THREADS=1
+export THREADS=10
 ./runtest.sh redis -p redis.host=localhost
 
 export THREADS=100
 ./runtest.sh redis -p redis.host=localhost
 
-export THREADS=1000
+export THREADS=500
 ./runtest.sh redis -p redis.host=localhost
 
 service redis_6379 stop
@@ -51,7 +51,7 @@ echo "##########################################"
 service mongodb start
 sleep 10
 
-export THREADS=1
+export THREADS=10
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
@@ -59,7 +59,7 @@ export THREADS=100
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
-export THREADS=1000
+export THREADS=500
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
@@ -70,13 +70,13 @@ echo "##########################################"
 echo "# HBASE"
 echo "##########################################"
 
-export THREADS=1
+export THREADS=10
 ./runtest.sh hbase
 
 export THREADS=100
 ./runtest.sh hbase
 
-export THREADS=1000
+export THREADS=500
 ./runtest.sh hbase
 
 echo "##########################################"
@@ -86,13 +86,13 @@ echo "##########################################"
 service memcached start
 sleep 10
 
-export THREADS=1
+export THREADS=10
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
 export THREADS=100
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
-export THREADS=1000
+export THREADS=500
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
 service memcached stop
@@ -102,13 +102,13 @@ echo "##########################################"
 echo "# ORION"
 echo "##########################################"
 
-export THREADS=1
+export THREADS=10
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
 export THREADS=100
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
-export THREADS=1000
+export THREADS=500
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
 #####################################à####

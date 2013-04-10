@@ -6,6 +6,10 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+LOW=10 
+MEDIUM=100
+HIGH=500
+
 echo "##########################################"
 echo "# AEROSPIKE"
 echo "##########################################"
@@ -13,13 +17,13 @@ echo "##########################################"
 /etc/init.d/citrusleaf start
 sleep 10
 
-export THREADS=10
+export THREADS=$LOW
 ./runtest.sh aerospike
 
-export THREADS=100
+export THREADS=$MEDIUM
 ./runtest.sh aerospike
 
-export THREADS=500
+export THREADS=$HIGH
 ./runtest.sh aerospike
 
 /etc/init.d/citrusleaf stop
@@ -32,13 +36,13 @@ echo "##########################################"
 service redis_6379 start
 sleep 10
 
-export THREADS=10
+export THREADS=$LOW
 ./runtest.sh redis -p redis.host=localhost
 
-export THREADS=100
+export THREADS=$MEDIUM
 ./runtest.sh redis -p redis.host=localhost
 
-export THREADS=500
+export THREADS=$HIGH
 ./runtest.sh redis -p redis.host=localhost
 
 service redis_6379 stop
@@ -51,15 +55,15 @@ echo "##########################################"
 service mongodb start
 sleep 10
 
-export THREADS=10
+export THREADS=$LOW
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
-export THREADS=100
+export THREADS=$MEDIUM
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
-export THREADS=500
+export THREADS=$HIGH
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
@@ -70,13 +74,13 @@ echo "##########################################"
 echo "# HBASE"
 echo "##########################################"
 
-export THREADS=10
+export THREADS=$LOW
 ./runtest.sh hbase
 
-export THREADS=100
+export THREADS=$MEDIUM
 ./runtest.sh hbase
 
-export THREADS=500
+export THREADS=$HIGH
 ./runtest.sh hbase
 
 echo "##########################################"
@@ -86,13 +90,13 @@ echo "##########################################"
 service memcached start
 sleep 10
 
-export THREADS=10
+export THREADS=$LOW
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
-export THREADS=100
+export THREADS=$MEDIUM
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
-export THREADS=500
+export THREADS=$HIGH
 ./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
 
 service memcached stop
@@ -102,13 +106,13 @@ echo "##########################################"
 echo "# ORION"
 echo "##########################################"
 
-export THREADS=10
+export THREADS=$LOW
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
-export THREADS=100
+export THREADS=$MEDIUM
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
-export THREADS=500
+export THREADS=$HIGH
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
 #####################################à####

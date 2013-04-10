@@ -20,7 +20,7 @@ do
 done
 
 # execute test
-FILES=workloads.1/*
+FILES=workload.1/*
 for f in $FILES
 do
 	now=$(date +"%Y%m%d_%H_%M_%S")

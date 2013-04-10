@@ -15,12 +15,12 @@ fi
 CLEANUP=$1.$THREADS.* 
 for f0 in $CLEANUP
 do
-	echo "delete $f0"
+  echo "delete $f0"
 	rm $f0
 done
 
 # execute test
-FILES=workloads/*
+FILES=workloads.1/*
 for f in $FILES
 do
 	now=$(date +"%Y%m%d_%H_%M_%S")

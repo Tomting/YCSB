@@ -69,9 +69,9 @@ if [ "$1" == "aerospike" ]; then
 	sleep 10
 fi
 if [ "$1" == "mongodb" ]; then
-	service mongodb stop
+	service mongod stop
 	sleep 10
-	service mongodb start
+	service mongod start
 	sleep 10
 fi
 if [ "$1" == "memcached" ]; then

@@ -5,6 +5,8 @@ set border 3
 set auto
 set key at graph 1.10, 0.85 left vertical samplen 0.1
 set size 0.8, 1
+set grid ytics lc rgb "#bbbbbb" lw 1 lt 0
+set grid xtics lc rgb "#bbbbbb" lw 1 lt 0
  
 div=1.1; bw = 0.9; h=1.0; BW=0.9; wd=10; LIMIT=255-wd; white = 0
 

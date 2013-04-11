@@ -33,6 +33,7 @@ set multiplot
 plot values u 0:(0):xticlabel(1) w l title '', \
 	'' u 2 title 'Aerospike', \
 	'' u 3 title 'Memcached', \
-	'' u 4 title 'Orion', \
-	'' u 5 title 'Redis' 
+	'' u 4 title 'MongoDB', \
+	'' u 5 title 'Orion', \
+	'' u 6 title 'Redis'
 	

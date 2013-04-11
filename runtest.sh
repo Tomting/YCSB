@@ -61,8 +61,10 @@ if [ "$1" == "redis" ]; then
 	sleep 10
 fi
 if [ "$1" == "aerospike" ]; then
-	echo "not yet implemented"
-	exit 0
+	/etc/init.d/citrusleaf stop
+	sleep 10
+	/etc/init.d/citrusleaf start
+	sleep 10
 fi
 if [ "$1" == "mongodb" ]; then
 	echo "not yet implemented"

@@ -78,7 +78,7 @@ service mongod start
 sleep 10
 
 export THREADS=$LOW
-./runtest.sh mongodb
+./runtest.sh mongodb -p mongodb.maxconnections=1000
 ./cleandb_mongodb.sh
 
 #service mongod stop
@@ -87,7 +87,7 @@ export THREADS=$LOW
 #sleep 10
 
 export THREADS=$MEDIUM
-./runtest.sh mongodb
+./runtest.sh mongodb -p mongodb.maxconnections=1000
 ./cleandb_mongodb.sh
 
 #service mongod stop
@@ -96,7 +96,7 @@ export THREADS=$MEDIUM
 #sleep 10
 
 export THREADS=$HIGH
-./runtest.sh mongodb
+./runtest.sh mongodb -p mongodb.maxconnections=1000
 ./cleandb_mongodb.sh
 
 service mongod stop

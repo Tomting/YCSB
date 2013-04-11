@@ -106,14 +106,20 @@ echo "##########################################"
 echo "# ORION"
 echo "##########################################"
 
+rm -rf /opt/orion/Redologs/*
+
 nohup /opt/orion/ORION &
 sleep 10
 
 export THREADS=$LOW
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
+rm -rf /opt/orion/Redologs/*
+
 export THREADS=$MEDIUM
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
+
+rm -rf /opt/orion/Redologs/*
 
 export THREADS=$HIGH
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT

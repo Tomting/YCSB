@@ -53,6 +53,10 @@ bin/ycsb run workloads/workloadd -P $f $2 $3 $4 $5 $6 $7 $8 $9 -threads $THREADS
 if [ $1 == "orion" ]; then
 fi
 if [ $1 == "redis" ]; then
+	service redis_6379 stop
+	sleep 10
+	service redis_6379 start
+	sleep 10
 fi
 if [ $1 == "aerospike" ]; then
 fi

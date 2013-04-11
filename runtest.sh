@@ -51,8 +51,10 @@ bin/ycsb run $1 -P workloads/workloadd $2 $3 $4 $5 $6 $7 $8 $9 -threads $THREADS
 
 # 7. delete data in the database
 if [ "$1" == "orion" ]; then
-	echo "not yet implemented"
-	exit 0
+	ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
+	sleep 10
+	nohup /opt/orion/ORION &
+	sleep 10
 fi
 if [ "$1" == "redis" ]; then
 	service redis_6379 stop

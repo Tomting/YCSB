@@ -83,24 +83,24 @@ export THREADS=$MEDIUM
 export THREADS=$HIGH
 ./runtest.sh hbase
 
-echo "##########################################"
-echo "# MEMCACHED"
-echo "##########################################"
-
-service memcached start
-sleep 10
-
-export THREADS=$LOW
-./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
-
-export THREADS=$MEDIUM
-./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
-
-export THREADS=$HIGH
-./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
-
-service memcached stop
-sleep 10
+#echo "##########################################"
+#echo "# MEMCACHED"
+#echo "##########################################"
+#
+#service memcached start
+#sleep 10
+#
+#export THREADS=$LOW
+#./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
+#
+#export THREADS=$MEDIUM
+#./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
+#
+#export THREADS=$HIGH
+#./runtest.sh memcached -p memcached.hosts=localhost:11211 -p memcached.checkOperationStatus=true
+#
+#service memcached stop
+#sleep 10
 
 echo "##########################################"
 echo "# ORION"

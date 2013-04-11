@@ -81,19 +81,19 @@ export THREADS=$LOW
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
-service mongod stop
-sleep 10
-service mongod start
-sleep 10
+#service mongod stop
+#sleep 10
+#service mongod start
+#sleep 10
 
 export THREADS=$MEDIUM
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
-service mongod stop
-sleep 10
-service mongod start
-sleep 10
+#service mongod stop
+#sleep 10
+#service mongod start
+#sleep 10
 
 export THREADS=$HIGH
 ./runtest.sh mongodb

@@ -71,6 +71,7 @@ fi
 if [ "$1" == "mongodb" ]; then
 	service mongod stop
 	sleep 10
+	./cleandb_mongodb.sh
 	service mongod start
 	sleep 10
 fi

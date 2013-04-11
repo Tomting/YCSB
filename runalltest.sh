@@ -70,18 +70,18 @@ export THREADS=$HIGH
 service mongod stop
 sleep 10
 
-echo "##########################################"
-echo "# HBASE"
-echo "##########################################"
-
-export THREADS=$LOW
-./runtest.sh hbase
-
-export THREADS=$MEDIUM
-./runtest.sh hbase
-
-export THREADS=$HIGH
-./runtest.sh hbase
+#echo "##########################################"
+#echo "# HBASE"
+#echo "##########################################"
+#
+#export THREADS=$LOW
+#./runtest.sh hbase
+#
+#export THREADS=$MEDIUM
+#./runtest.sh hbase
+#
+#export THREADS=$HIGH
+#./runtest.sh hbase
 
 #echo "##########################################"
 #echo "# MEMCACHED"

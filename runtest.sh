@@ -69,8 +69,10 @@ if [ "$1" == "aerospike" ]; then
 	sleep 10
 fi
 if [ "$1" == "mongodb" ]; then
-	echo "not yet implemented"
-	exit 0
+	service mongodb stop
+	sleep 10
+	service mongodb start
+	sleep 10
 fi
 if [ "$1" == "memcached" ]; then
 	echo "not yet implemented"

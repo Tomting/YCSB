@@ -50,8 +50,16 @@ bin/ycsb run workloads/workloadf -P $f $2 $3 $4 $5 $6 $7 $8 $9 -threads $THREADS
 bin/ycsb run workloads/workloadd -P $f $2 $3 $4 $5 $6 $7 $8 $9 -threads $THREADS -p measurementtype=timeseries -p timeseries.granularity=$GRANULARITY > $1.$THREADS.$(basename $f).$now
 
 # 7. delete data in the database
-#
-#
+if [ $1 == "orion" ]; then
+fi
+if [ $1 == "redis" ]; then
+fi
+if [ $1 == "aerospike" ]; then
+fi
+if [ $1 == "mongodb" ]; then
+fi
+if [ $1 == "memcached" ]; then
+fi
 
 # 8. load workload E
 bin/ycsb load workloads/workloade -P $f $2 $3 $4 $5 $6 $7 $8 $9 > load_$1.$THREADS.$(basename $f).$now

@@ -106,6 +106,9 @@ echo "##########################################"
 echo "# ORION"
 echo "##########################################"
 
+nohup /opt/orion/ORION &
+sleep 10
+
 export THREADS=$LOW
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
@@ -114,6 +117,9 @@ export THREADS=$MEDIUM
 
 export THREADS=$HIGH
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
+
+ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
+sleep 10
 
 #####################################à####
 # COLLECT

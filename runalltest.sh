@@ -51,8 +51,18 @@ sleep 10
 export THREADS=$LOW
 ./runtest.sh redis -p redis.host=localhost
 
+service redis_6379 stop
+sleep 10
+service redis_6379 start
+sleep 10
+
 export THREADS=$MEDIUM
 ./runtest.sh redis -p redis.host=localhost
+
+service redis_6379 stop
+sleep 10
+service redis_6379 start
+sleep 10
 
 export THREADS=$HIGH
 ./runtest.sh redis -p redis.host=localhost
@@ -71,9 +81,19 @@ export THREADS=$LOW
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
+service mongod stop
+sleep 10
+service mongod start
+sleep 10
+
 export THREADS=$MEDIUM
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
+
+service mongod stop
+sleep 10
+service mongod start
+sleep 10
 
 export THREADS=$HIGH
 ./runtest.sh mongodb
@@ -126,12 +146,20 @@ sleep 10
 export THREADS=$LOW
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
+ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
+sleep 10
 rm -rf /opt/orion/Redologs/*
+nohup /opt/orion/ORION &
+sleep 10
 
 export THREADS=$MEDIUM
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
 
+ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
+sleep 10
 rm -rf /opt/orion/Redologs/*
+nohup /opt/orion/ORION &
+sleep 10
 
 export THREADS=$HIGH
 ./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT

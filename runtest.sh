@@ -51,6 +51,8 @@ bin/ycsb run workloads/workloadd -P $f $2 $3 $4 $5 $6 $7 $8 $9 -threads $THREADS
 
 # 7. delete data in the database
 if [ "$1" == "orion" ]; then
+	echo "not yet implemented"
+	exit 0
 fi
 if [ "$1" == "redis" ]; then
 	service redis_6379 stop
@@ -59,10 +61,16 @@ if [ "$1" == "redis" ]; then
 	sleep 10
 fi
 if [ "$1" == "aerospike" ]; then
+	echo "not yet implemented"
+	exit 0
 fi
 if [ "$1" == "mongodb" ]; then
+	echo "not yet implemented"
+	exit 0
 fi
 if [ "$1" == "memcached" ]; then
+	echo "not yet implemented"
+	exit 0
 fi
 
 # 8. load workload E

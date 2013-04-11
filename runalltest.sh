@@ -52,7 +52,7 @@ echo "##########################################"
 echo "# MONGODB"
 echo "##########################################"
 
-service mongodb start
+service mongod start
 sleep 10
 
 export THREADS=$LOW
@@ -67,7 +67,7 @@ export THREADS=$HIGH
 ./runtest.sh mongodb
 ./cleandb_mongodb.sh
 
-service mongodb stop
+service mongod stop
 sleep 10
 
 echo "##########################################"

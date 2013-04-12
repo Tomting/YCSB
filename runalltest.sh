@@ -81,19 +81,19 @@ export THREADS=$LOW
 ./runtest.sh mongodb -p mongodb.maxconnections=1000
 ./cleandb_mongodb.sh
 
-#service mongod stop
-#sleep 10
-#service mongod start
-#sleep 10
+service mongod stop
+sleep 10
+service mongod start
+sleep 10
 
 export THREADS=$MEDIUM
 ./runtest.sh mongodb -p mongodb.maxconnections=1000
 ./cleandb_mongodb.sh
 
-#service mongod stop
-#sleep 10
-#service mongod start
-#sleep 10
+service mongod stop
+sleep 10
+service mongod start
+sleep 10
 
 export THREADS=$HIGH
 ./runtest.sh mongodb -p mongodb.maxconnections=1000
@@ -133,6 +133,35 @@ sleep 10
 #
 #service memcached stop
 #sleep 10
+
+echo "##########################################"
+echo "# ORIENTDB"
+echo "##########################################"
+
+/opt/orientdb/bin/server.sh
+sleep 10
+
+export THREADS=$LOW
+./runtest.sh orientdb -p mongodb.maxconnections=1000
+
+/opt/orientdb/bin/shutdown.sh
+sleep 10
+/opt/orientdb/bin/server.sh
+sleep 10
+
+export THREADS=$MEDIUM
+./runtest.sh orientdb -p mongodb.maxconnections=1000
+
+/opt/orientdb/bin/shutdown.sh
+sleep 10
+/opt/orientdb/bin/server.sh
+sleep 10
+
+export THREADS=$HIGH
+./runtest.sh orientdb -p mongodb.maxconnections=1000
+
+/opt/orientdb/bin/shutdown.sh
+sleep 10
 
 echo "##########################################"
 echo "# ORION"

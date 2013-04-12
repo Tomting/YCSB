@@ -210,7 +210,7 @@ public class OrientDBClient extends DB {
       for (ODocument document : documents) {
         final HashMap<String, ByteIterator> entry;
         if (fields == null) {
-          entry = new HashMap<String, ByteIterator>();
+          entry = new HashMap<String, ByteIterator>(document.fieldNames().size());
         } else { 
           entry = new HashMap<String, ByteIterator>(fields.size());
         }

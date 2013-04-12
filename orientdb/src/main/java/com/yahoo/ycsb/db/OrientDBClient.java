@@ -217,14 +217,17 @@ public class OrientDBClient extends DB {
         result.add(entry);
 
         if (fields != null) {
-          for (String field : fields)
+          for (String field : fields) {
             entry.put(field, new StringByteIterator((String) document.field(field)));
+          }
         } else { 
-          for (String field : document.fieldNames())
+          for (String field : document.fieldNames()) {
             entry.put(field, new StringByteIterator((String) document.field(field)));
+          }
+        }
       }
-
       return 0;
+
     } catch (Exception e) {
       e.printStackTrace();
     }

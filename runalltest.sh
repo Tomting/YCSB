@@ -142,15 +142,15 @@ echo "##########################################"
 sleep 10
 
 export THREADS=$LOW
-./runtest.sh orientdb
+./runtest.sh orientdb -p OrientDB.url=/tmp/
 
 /opt/orientdb/bin/shutdown.sh
 sleep 10
-/opt/orientdb/bin/server.sh
+/opt/orientdb/bin/server.sh 
 sleep 10
 
 export THREADS=$MEDIUM
-./runtest.sh orientdb
+./runtest.sh orientdb -p OrientDB.url=/tmp/
 
 /opt/orientdb/bin/shutdown.sh
 sleep 10
@@ -158,7 +158,7 @@ sleep 10
 sleep 10
 
 export THREADS=$HIGH
-./runtest.sh orientdb
+./runtest.sh orientdb -p OrientDB.url=/tmp/
 
 /opt/orientdb/bin/shutdown.sh
 sleep 10

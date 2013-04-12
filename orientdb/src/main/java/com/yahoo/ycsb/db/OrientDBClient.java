@@ -222,7 +222,7 @@ public class OrientDBClient extends DB {
           }
         } else { 
           for (String field : document.fieldNames()) {
-            entry.put(field, new StringByteIterator((String) document.field(field)));
+            entry.put(field, new StringByteIterator((String) document.field(field).toString()));
           }
         }
       }

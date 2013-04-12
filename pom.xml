@@ -67,6 +67,7 @@
 	<module>mongodb</module>
 	<module>aerospike</module>
 	<module>hbase</module>
+	<module>orientdb</module>
 <!--
 	<module>memcached</module>
 -->

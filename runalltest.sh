@@ -142,7 +142,7 @@ echo "##########################################"
 sleep 10
 
 export THREADS=$LOW
-./runtest.sh orientdb -p mongodb.maxconnections=1000
+./runtest.sh orientdb
 
 /opt/orientdb/bin/shutdown.sh
 sleep 10
@@ -150,7 +150,7 @@ sleep 10
 sleep 10
 
 export THREADS=$MEDIUM
-./runtest.sh orientdb -p mongodb.maxconnections=1000
+./runtest.sh orientdb
 
 /opt/orientdb/bin/shutdown.sh
 sleep 10
@@ -158,7 +158,7 @@ sleep 10
 sleep 10
 
 export THREADS=$HIGH
-./runtest.sh orientdb -p mongodb.maxconnections=1000
+./runtest.sh orientdb
 
 /opt/orientdb/bin/shutdown.sh
 sleep 10

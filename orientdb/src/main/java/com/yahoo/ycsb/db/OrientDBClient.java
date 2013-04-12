@@ -208,7 +208,12 @@ public class OrientDBClient extends DB {
     try {
       final Collection<ODocument> documents = dictionary.getIndex().getEntriesMajor(startkey, true, recordcount);
       for (ODocument document : documents) {
-        final HashMap<String, ByteIterator> entry = new HashMap<String, ByteIterator>(fields.size());
+        final HashMap<String, ByteIterator> entry;
+        if (fields == null) {
+          entry = new HashMap<String, ByteIterator>();
+        } else { 
+          entry = new HashMap<String, ByteIterator>(fields.size());
+        }
         result.add(entry);
 
         for (String field : fields)

@@ -68,6 +68,8 @@
 	<module>aerospike</module>
 	<module>hbase</module>
 	<module>orientdb</module>
+    	<module>cassandra</module>
+
 <!--
 	<module>memcached</module>
 -->

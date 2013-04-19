@@ -91,11 +91,13 @@
        <scope>system</scope>
        <systemPath>${orion.aries}</systemPath>
      </dependency>
+     <!--
 	<dependency>
 		<groupId>com.google.protobuf</groupId>
 		<artifactId>protobuf-java</artifactId>
 		<version>2.5.0</version>
 	</dependency>
+	-->
   </dependencies>
   
   <build>

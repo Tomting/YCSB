@@ -27,22 +27,12 @@ import java.util.Set;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
-import org.apache.thrift.TException;
-
-import com.tomting.orion.ThrfL2cl;
-import com.tomting.orion.ThrfL2cv;
-import com.tomting.orion.ThrfL2ks;
-import com.tomting.orion.ThrfL2qb;
-import com.tomting.orion.ThrfL2qr;
-import com.tomting.orion.ThrfL2st;
-import com.tomting.orion.ThrfLkey;
-import com.tomting.orion.iEcolumntype;
-import com.tomting.orion.iEquerytype;
-import com.tomting.orion.iEstatetype;
+import com.google.protobuf.ByteString;
+import com.tomting.orion.*;
+import com.tomting.orion.connection.*;
 import com.tomting.orion.connection.Helpers;
-import com.tomting.orion.connection.OrionConnection;
-import com.tomting.orion.connection.OrionConnectionFactory;
 import com.yahoo.ycsb.*;
+
 
 public class OrionClient extends DB {
 	
@@ -50,9 +40,10 @@ public class OrionClient extends DB {
 	
 	public static final int Ok = 0;
 	public static final int Error = -1;	
-	private OrionConnectionFactory ocf = null;
-	private OrionConnection orionConnection = null;
+	private OCFI ocf = null;
+	private OCI oc = null;
 	
+
 	
 	public void init() throws DBException {
 	    String hosts = getProperties().getProperty("hosts");
@@ -60,14 +51,15 @@ public class OrionClient extends DB {
 	      throw new DBException("Required property \"hosts\" missing for OrionClient");
 	    }	
 	    LOGGER.info(hosts);
-	    ocf= Helpers.getOCF (hosts);
-	    orionConnection = ocf.checkOut();
-	    if (orionConnection == null) throw new DBException("Cant connect to Orion");   	    
+	    
+	    ocf = com.tomting.aries.Helpers.getSharedACF(Helpers.getSharedOCF (hosts), hosts);
+	    oc = ocf.checkOut();
 	}
 	
 	public void cleanup() throws DBException {
-		
-		ocf.checkIn(orionConnection);
+
+		ocf.checkIn(oc);
+		ocf.close ();
 	}	
 
 	/**
@@ -81,6 +73,8 @@ public class OrionClient extends DB {
 			LOGGER.fatal("null input");
 			return Error;
 		}
+		
+
 		ThrfL2st statement = OrionConnection.getStatement();
 		statement.cVkey.sVmain = key;
 		statement.cVkey.iVstate = iEstatetype.UPSERT;
@@ -98,11 +92,12 @@ public class OrionClient extends DB {
 	        it.remove(); 
 	    }		
 		 
-		try {
-        	result = orionConnection.runStatement(statement);        	
-		} catch (TException e) {
+		try {			
+			result = oc.runStatement(statement);			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}  
-        return result ? Ok : Error;	
+		return result ? Ok : Error;	
 	}	
 	
 	/**
@@ -111,12 +106,13 @@ public class OrionClient extends DB {
 	@Override
 	public int read(String table, String key, Set<String> fields, HashMap<String, ByteIterator> result) {
 		boolean returnedKeyslices = false;
-		ThrfL2ks keyslice;
 	
 		if (key == null) {
 			LOGGER.fatal("null input");
 			return Error;
-		}			
+		}		
+		
+		ThrfL2ks keyslice;
 		ThrfL2qr query = OrionConnection.getQuery();
 		query.cVmutable.sVtable = table.toUpperCase();	
 		query.iVquery = iEquerytype.EXACTQUERY;
@@ -129,7 +125,8 @@ public class OrionClient extends DB {
 		        query.cVselect.add(cVcolumn);  		
 			}
         try {
-        	ThrfL2qb queryReturn = orionConnection.runQuery (query);
+        	ThrfL2qb queryReturn = oc.runQuery (query);
+        	
         	returnedKeyslices = queryReturn.bVreturn;
         	if (returnedKeyslices) {
         		keyslice = queryReturn.cKeyslices.get(0);        		
@@ -137,8 +134,8 @@ public class OrionClient extends DB {
         			result.put(column.sVcolumn, new StringByteIterator(column.cVvalue.sVvalue));
         		}
         	}
-		} catch (TException e){}        
-        return returnedKeyslices ? Ok : Error;	
+		} catch (Exception e){}        		
+        return returnedKeyslices ? Ok : Error;		
 	}
 	
 	/**
@@ -158,7 +155,8 @@ public class OrionClient extends DB {
 		if (startkey == null) {
 			LOGGER.fatal("null input");
 			return Error;
-		}			
+		}		
+		
 		ThrfL2qr query = OrionConnection.getQuery();
 		query.cVmutable.sVtable = table.toUpperCase();	
 		query.iVquery = iEquerytype.RANGEQUERY;
@@ -172,7 +170,8 @@ public class OrionClient extends DB {
 		        query.cVselect.add(cVcolumn);  		
 			}
         try {
-        	ThrfL2qb queryReturn = orionConnection.runQuery (query);
+        	ThrfL2qb queryReturn = oc.runQuery (query);        	
+        	
         	returnedKeyslices = queryReturn.bVreturn;
         	if (returnedKeyslices) {
         		for (ThrfL2ks keyslice : queryReturn.cKeyslices) {
@@ -182,7 +181,8 @@ public class OrionClient extends DB {
 	        		result.add(row);
         		}
         	}
-		} catch (TException e){}        
+		} catch (Exception e){}   
+        		
         return returnedKeyslices ? Ok : Error;	
 	}
 
@@ -197,15 +197,17 @@ public class OrionClient extends DB {
 			LOGGER.fatal("null input");
 			return Error;
 		}
+		
 		ThrfL2st statement = OrionConnection.getStatement();
 		statement.cVkey.sVmain = key;
 		statement.cVkey.iVstate = iEstatetype.DELTMB;
 		statement.cVmutable.sVtable = table.toUpperCase();
         		 
-		try {
-        	result = orionConnection.runStatement(statement);        	
-		} catch (TException e) {
+		try {			
+			result = oc.runStatement(statement);
+		} catch (Exception e) {
 		}  
+		   				
         return result ? Ok : Error;	
 	}		
 	
@@ -265,4 +267,10 @@ public class OrionClient extends DB {
 	    	System.exit(0);
 	    }	    
 	}
+	
+	public static ByteString stringToByteString (String input) {
+		
+		return ByteString.copyFrom(input.getBytes());
+	}	
+	
 }

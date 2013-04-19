@@ -206,7 +206,7 @@ nohup /opt/orion/ORION &
 sleep 10
 
 export THREADS=$LOW
-./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
+./runtest.sh orion -p hosts=orion[20,20]:localhost:9001,9002:DEFAULT
 
 ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
 sleep 10
@@ -215,7 +215,7 @@ nohup /opt/orion/ORION &
 sleep 10
 
 export THREADS=$MEDIUM
-./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
+./runtest.sh orion -p hosts=orion[20,20]:localhost:9001,9002:DEFAULT
 
 ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
 sleep 10
@@ -224,7 +224,7 @@ nohup /opt/orion/ORION &
 sleep 10
 
 export THREADS=$HIGH
-./runtest.sh orion -p hosts=orion:localhost:9001,9002:DEFAULT
+./runtest.sh orion -p hosts=orion[20,20]:localhost:9001,9002:DEFAULT
 
 ps -ef|grep ORION|grep -v grep|while read a b c; do  kill -9 $b; done
 sleep 10

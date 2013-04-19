@@ -27,7 +27,6 @@ import java.util.Set;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
-import com.google.protobuf.ByteString;
 import com.tomting.orion.*;
 import com.tomting.orion.connection.*;
 import com.tomting.orion.connection.Helpers;
@@ -267,10 +266,5 @@ public class OrionClient extends DB {
 	    	System.exit(0);
 	    }	    
 	}
-	
-	public static ByteString stringToByteString (String input) {
 		
-		return ByteString.copyFrom(input.getBytes());
-	}	
-	
 }

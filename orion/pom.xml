@@ -13,7 +13,7 @@
 
 	<properties>
 		<orion.core>${basedir}/dependencies/com.tomting.orion.jar</orion.core>
-		<orion.thor>${basedir}/dependencies/com.tomting.thor.jar</orion.thor>
+		<!--<orion.thor>${basedir}/dependencies/com.tomting.thor.jar</orion.thor>-->
 		<orion.aries>${basedir}/dependencies/com.tomting.aries.jar</orion.aries>
 	</properties>
 
@@ -77,6 +77,7 @@
        <scope>system</scope>
        <systemPath>${orion.core}</systemPath>
      </dependency>
+<!--
      <dependency>
        <groupId>orion.thor</groupId>
        <artifactId>orion.thor</artifactId>
@@ -84,6 +85,7 @@
        <scope>system</scope>
        <systemPath>${orion.thor}</systemPath>
      </dependency>
+-->
      <dependency>
        <groupId>orion.aries</groupId>
        <artifactId>orion.aries</artifactId>

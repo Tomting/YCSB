@@ -13,8 +13,8 @@
 
 	<properties>
 		<orion.core>${basedir}/dependencies/com.tomting.orion.jar</orion.core>
-		<!--<orion.thor>${basedir}/dependencies/com.tomting.thor.jar</orion.thor>-->
 		<orion.aries>${basedir}/dependencies/com.tomting.aries.jar</orion.aries>
+		<google.protobuf>${basedir}/dependencies/com.google.protobuf.jar</google.protobuf>
 	</properties>
 
   <dependencies>
@@ -77,15 +77,6 @@
        <scope>system</scope>
        <systemPath>${orion.core}</systemPath>
      </dependency>
-<!--
-     <dependency>
-       <groupId>orion.thor</groupId>
-       <artifactId>orion.thor</artifactId>
-       <version>${project.version}</version>
-       <scope>system</scope>
-       <systemPath>${orion.thor}</systemPath>
-     </dependency>
--->
      <dependency>
        <groupId>orion.aries</groupId>
        <artifactId>orion.aries</artifactId>
@@ -93,13 +84,13 @@
        <scope>system</scope>
        <systemPath>${orion.aries}</systemPath>
      </dependency>
-     <!--
-	<dependency>
-		<groupId>com.google.protobuf</groupId>
-		<artifactId>protobuf-java</artifactId>
-		<version>2.5.0</version>
-	</dependency>
-	-->
+     <dependency>
+       <groupId>google.protobuf</groupId>
+       <artifactId>google.protobuf</artifactId>
+       <version>${project.version}</version>
+       <scope>system</scope>
+       <systemPath>${google.protobuf}</systemPath>
+     </dependency>
   </dependencies>
   
   <build>

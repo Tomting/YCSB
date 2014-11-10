@@ -102,51 +102,51 @@ export THREADS=$HIGH
 service mongod stop
 sleep 10
 
-echo "##########################################"
-echo "# CASSANDRA"
-echo "##########################################"
-
-#service mongod start
-#sleep 10
-
-export THREADS=$LOW
-./runtest.sh cassandra-10 -p hosts=localhost
-#./cleandb_mongodb.sh
-
-#service mongod stop
-#sleep 10
-#service mongod start
-#sleep 10
-
-export THREADS=$MEDIUM
-./runtest.sh cassandra-10 -p hosts=localhost
-#./cleandb_mongodb.sh
-
-#service mongod stop
-#sleep 10
-#service mongod start
-#sleep 10
-
-export THREADS=$HIGH
-./runtest.sh cassandra-10 -p hosts=localhost
-#./cleandb_mongodb.sh
-
-#service mongod stop
-#sleep 10
-
-
 #echo "##########################################"
-#echo "# HBASE"
+#echo "# CASSANDRA"
 #echo "##########################################"
+#
+##service mongod start
+##sleep 10
 #
 #export THREADS=$LOW
-#./runtest.sh hbase
+#./runtest.sh cassandra-10 -p hosts=localhost
+##./cleandb_mongodb.sh
+#
+##service mongod stop
+##sleep 10
+#service mongod start
+#sleep 10
 #
 #export THREADS=$MEDIUM
-#./runtest.sh hbase
+#./runtest.sh cassandra-10 -p hosts=localhost
+##./cleandb_mongodb.sh
+#
+##service mongod stop
+##sleep 10
+##service mongod start
+##sleep 10
 #
 #export THREADS=$HIGH
-#./runtest.sh hbase
+#./runtest.sh cassandra-10 -p hosts=localhost
+##./cleandb_mongodb.sh
+#
+##service mongod stop
+##sleep 10
+
+
+echo "##########################################"
+echo "# HBASE"
+echo "##########################################"
+
+export THREADS=$LOW
+./runtest.sh hbase
+
+export THREADS=$MEDIUM
+./runtest.sh hbase
+
+export THREADS=$HIGH
+./runtest.sh hbase
 
 #echo "##########################################"
 #echo "# MEMCACHED"
@@ -167,34 +167,34 @@ export THREADS=$HIGH
 #service memcached stop
 #sleep 10
 
-echo "##########################################"
-echo "# ORIENTDB"
-echo "##########################################"
-
-/opt/orientdb/bin/server.sh
-sleep 10
-
-export THREADS=$LOW
-./runtest.sh orientdb -p OrientDB.url=/tmp/
-
-/opt/orientdb/bin/shutdown.sh
-sleep 10
-/opt/orientdb/bin/server.sh 
-sleep 10
-
-export THREADS=$MEDIUM
-./runtest.sh orientdb -p OrientDB.url=/tmp/
-
-/opt/orientdb/bin/shutdown.sh
-sleep 10
-/opt/orientdb/bin/server.sh
-sleep 10
-
-export THREADS=$HIGH
-./runtest.sh orientdb -p OrientDB.url=/tmp/
-
-/opt/orientdb/bin/shutdown.sh
-sleep 10
+#echo "##########################################"
+#echo "# ORIENTDB"
+#echo "##########################################"
+#
+#/opt/orientdb/bin/server.sh
+#sleep 10
+#
+#export THREADS=$LOW
+#./runtest.sh orientdb -p OrientDB.url=/tmp/
+#
+#/opt/orientdb/bin/shutdown.sh
+#sleep 10
+#/opt/orientdb/bin/server.sh 
+#sleep 10
+#
+#export THREADS=$MEDIUM
+#./runtest.sh orientdb -p OrientDB.url=/tmp/
+#
+#/opt/orientdb/bin/shutdown.sh
+#sleep 10
+#/opt/orientdb/bin/server.sh
+#sleep 10
+#
+#export THREADS=$HIGH
+#./runtest.sh orientdb -p OrientDB.url=/tmp/
+#
+#/opt/orientdb/bin/shutdown.sh
+#sleep 10
 
 echo "##########################################"
 echo "# ORION"
@@ -233,7 +233,7 @@ sleep 10
 # COLLECT
 ##########################################
 now=$(date +"%Y%m%d_%H_%M_%S")
-zip collect_$now.zip orion.* redis.* aerospike.* mongodb.* hbase.* memcached.*
+zip collect_$now.zip orion.* redis.* aerospike.* mongodb.* hbase.*
 mv collect_$now.zip /var/www/html/test
 
 #####################################à####
@@ -244,5 +244,4 @@ mv collect_$now.zip /var/www/html/test
 ./cleanup.sh mongodb
 ./cleanup.sh orion
 ./cleanup.sh hbase
-./cleanup.sh memcached
 

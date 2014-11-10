@@ -62,13 +62,16 @@
   <modules>
     <!--module>build-tools</module-->
 	<module>core</module>
-	<module>orion</module>
-	<module>redis</module>
 	<module>mongodb</module>
 	<module>aerospike</module>
+	<module>redis</module>
+	<module>hbase</module>
+	<module>orion</module>
+<!--
 	<module>hbase</module>
 	<module>orientdb</module>
     	<module>cassandra</module>
+-->
 
 <!--
 	<module>memcached</module>
@@ -76,7 +79,6 @@
 
 <!--
     <module>cassandra</module>
-	<module>hbase</module>
     <module>hypertable</module>
     <module>dynamodb</module>
     <module>elasticsearch</module>

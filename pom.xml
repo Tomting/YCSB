@@ -66,6 +66,7 @@
 	<module>aerospike</module>
 	<module>redis</module>
 	<module>hbase</module>
+	<module>couchbase-2.0</module>
 	<module>orion</module>
 <!--
 	<module>hbase</module>
@@ -82,9 +83,6 @@
     <module>hypertable</module>
     <module>dynamodb</module>
     <module>elasticsearch</module>
-	<module>mongodb</module>
-	<module>orion</module>
-	<module>aerospike</module>
 	<module>memcached</module>
 	<module>gemfire</module>
     <module>infinispan</module>

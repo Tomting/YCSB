@@ -63,9 +63,9 @@ if [ "$1" == "redis" ]; then
 	sleep 10
 fi
 if [ "$1" == "aerospike" ]; then
-	/etc/init.d/citrusleaf stop
+	/etc/init.d/aerospike stop
 	sleep 10
-	/etc/init.d/citrusleaf start
+	/etc/init.d/aerospike start
 	sleep 10
 fi
 if [ "$1" == "mongodb" ]; then

@@ -20,25 +20,25 @@ sleep 10
 export THREADS=$LOW
 ./runtest.sh aerospike
 
-/etc/init.d/citrusleaf stop
+/etc/init.d/aerospike stop
 sleep 10
 ipcs -m|grep root |grep -v "0x6c6c6536"| while read a b c; do ipcrm -m $b; done
-/etc/init.d/citrusleaf start
+/etc/init.d/aerospike start
 sleep 10
 
 export THREADS=$MEDIUM
 ./runtest.sh aerospike
 
-/etc/init.d/citrusleaf stop
+/etc/init.d/aerospike stop
 sleep 10
 ipcs -m|grep root |grep -v "0x6c6c6536"| while read a b c; do ipcrm -m $b; done
-/etc/init.d/citrusleaf start
+/etc/init.d/aerospike start
 sleep 10
 
 export THREADS=$HIGH
 ./runtest.sh aerospike
 
-/etc/init.d/citrusleaf stop
+/etc/init.d/aerospike stop
 sleep 10
 
 echo "##########################################"

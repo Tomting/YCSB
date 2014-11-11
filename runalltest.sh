@@ -196,6 +196,14 @@ export THREADS=$HIGH
 #/opt/orientdb/bin/shutdown.sh
 #sleep 10
 
+#echo "##########################################"
+#echo "# COUCHBASE 2.0"
+#echo "##########################################"
+
+#export THREADS=$LOW
+#./runtest.sh couchbase
+#sleep 10
+
 echo "##########################################"
 echo "# ORION"
 echo "##########################################"

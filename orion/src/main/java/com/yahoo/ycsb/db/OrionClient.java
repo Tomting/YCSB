@@ -58,7 +58,7 @@ public class OrionClient extends DB {
 	public void cleanup() throws DBException {
 
 		ocf.checkIn(oc);
-		ocf.close ();
+		//ocf.close ();
 	}	
 
 	/**
